@@ -1,0 +1,21 @@
+RUNNING GROUP WEP APPLICATION USING SPRING MVC
+
+SET UP
++ Create the project from spring intializr
++ Download the postgres for your operating system
+    Note: while downloading after setting files and server there is a part
+    you need to cancel on the way don't worry you will be fine.
++ Set up postgres in your ide(Intellij).
++ Create a model (entity class)
+    Note: @Builder is used when you map the data you wanna fetch in the impl class
++ Create its repository (interface extends jpa) -> write your custom query inside of it ex. findById
++ Create the dto for better practice (expressing what to show to the user from database specifically)
+    Note: you can just copy the exact field from the entity class but don't forget to delete the annotations
++ Create a service which is going to be an interface too, this actually won't do anything until we implement it
++ Create an impl where you implement the service and repository interfaces and the methods you want
+    Note: do not use autowired just inject the repository class using constructor and then you will use it.
+    Note: remember that you are doing the mapping from the entity class to its dto class so return the dtoObject
+    Note: use the @service on the impl and not on the service interface
++ Create the controller and there you will tell the url paths and control the data
++ Add the view (html/css/js)
+    Note: there is a dependency for letting thymeleaf adding the layouts
