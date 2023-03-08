@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/0faddc1af8.js" crossorigin="anonymous"></script>
 
     <title>Book Store</title>
 </head>
@@ -35,31 +34,30 @@
     </div>
 </nav>
 
-<div class="container my-5 col-md-6">
-    <table class="table table-stripped table-hover">
-        <thead>
-        <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Author</th>
-            <th scope="col">Price</th>
-            <th scope="col">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="book:${book}">
-            <td th:text="${book.id}"></td>
-            <td th:text="${book.name}"></td>
-            <td th:text="${book.author}"></td>
-            <td th:text="${book.price}"></td>
-            <td><a class="btn btn-secondary btn-sm" th:href="@{/mylist/{id}(id=${book.id})}">Add To MyBook</a>
-                <a style="color: blue" th:href="@{/edit/{id}(id=${book.id})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
-                <a style="color: red"  th:href="@{/delete/{id}(id=${book.id})}"><i  class="fa-solid fa-trash ms-4"></i></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div class="container my-5 p-5" style="border: 1px solid black">
+    <h4 class="text-center"> Edit Book Here</h4>
+    <form class="col-md-4 offset-md-4" th:action="@{/save}" method="post" th:object="${book}">
+
+        <input type="hidden" name="id" th:value="${book.id}"/>
+
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" th:value="${book.name}">
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <input type="text" class="form-control" id="author" name="author" th:value="${book.author}">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="text" class="form-control" id="price" name="price" th:value="${book.price}">
+        </div>
+
+        <div style="text-align: center;"><button type="submit" class="btn btn-primary">Submit</button></div>
+
+    </form>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

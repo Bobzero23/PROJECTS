@@ -3,3 +3,8 @@ Note: The names attributes you write on your html, to be able to fetched must be
 
 DISPLAYING BOOKS IN A TABLE FORMAT
 + first start by creating a method in the service and tell it to findAll() using the repository object
+
+Note: if you wanna add book like you are using session then for the page pass the object of the class you want and
+    pass the corresponding values
+
+Note: while editing don't forget the hidden input tag
