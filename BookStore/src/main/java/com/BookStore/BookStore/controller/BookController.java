@@ -70,19 +70,4 @@ public class BookController {
         return "redirect:/my_books";
     }
 
-    /**path handler for book editing*/
-    @RequestMapping("/edit/{id}")
-    public String editBook(@PathVariable("id") int id, Model model){
-        Book book = bookService.getBookById(id);
-        model.addAttribute("book", book);
-        return "bookEdit";
-    }
-
-    /**path handler for deleting a book*/
-    @RequestMapping("/delete/{id}")
-    public String deleteBook(@PathVariable("id") int id) {
-        bookService.deleteBookById(id);
-        return "redirect:/available_books";
-    }
-
 }

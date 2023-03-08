@@ -53,8 +53,8 @@
             <td th:text="${book.author}"></td>
             <td th:text="${book.price}"></td>
             <td><a class="btn btn-secondary btn-sm" th:href="@{/mylist/{id}(id=${book.id})}">Add To MyBook</a>
-                <a style="color: blue" th:href="@{/edit/{id}(id=${book.id})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
-                <a style="color: red"  th:href="@{/delete/{id}(id=${book.id})}"><i  class="fa-solid fa-trash ms-4"></i></a>
+                <a><i style="color: red" class="fa-solid fa-trash"></i></a>
+                <a><i class="fa-solid fa-pen-to-square"></i></a>
             </td>
         </tr>
         </tbody>
