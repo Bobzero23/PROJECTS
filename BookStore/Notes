@@ -1,2 +1,5 @@
 Note: The names attributes you write on your html, to be able to fetched must be as same as the name on your
     model class.
+
+DISPLAYING BOOKS IN A TABLE FORMAT
++ first start by creating a method in the service and tell it to findAll() using the repository object

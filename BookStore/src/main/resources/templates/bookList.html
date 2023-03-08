@@ -24,7 +24,7 @@
                     <a class="nav-link text-white" href="available_books">Available books</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">My books</a>
+                    <a class="nav-link text-white" href="my_books">My books</a>
                 </li>
             </ul>
             <div>
@@ -34,7 +34,7 @@
     </div>
 </nav>
 
-<div class="container my-5">
+<div class="container my-5 col-md-6">
     <table class="table table-stripped table-hover">
         <thead>
         <tr>
@@ -46,26 +46,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry the Bird</td>
-            <td>@twitter</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
+        <tr th:each="book:${book}">
+            <td th:text="${book.id}"></td>
+            <td th:text="${book.name}"></td>
+            <td th:text="${book.author}"></td>
+            <td th:text="${book.price}"></td>
+            <td><a class="btn btn-secondary btn-sm" th:href="@{/mylist/{id}(id=${book.id}})}">Add To MyBook</a></td>
         </tr>
         </tbody>
     </table>
