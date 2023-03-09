@@ -58,6 +58,7 @@ public class BookController {
     public String displayMyBooks(Model model){
         List<MyBookList> list = myBookService.getAllMyBooks();
         model.addAttribute("book", list);
+
         return "myBooks";
     }
 
@@ -67,6 +68,7 @@ public class BookController {
         Book book = bookService.getBookById(id);
         MyBookList BookList = new MyBookList(book.getId(), book.getName(), book.getAuthor(), book.getPrice());
         myBookService.saveMyBooks(BookList);
+
         return "redirect:/my_books";
     }
 
@@ -75,6 +77,7 @@ public class BookController {
     public String editBook(@PathVariable("id") int id, Model model){
         Book book = bookService.getBookById(id);
         model.addAttribute("book", book);
+
         return "bookEdit";
     }
 
@@ -82,6 +85,7 @@ public class BookController {
     @RequestMapping("/delete/{id}")
     public String deleteBook(@PathVariable("id") int id) {
         bookService.deleteBookById(id);
+
         return "redirect:/available_books";
 
     }
