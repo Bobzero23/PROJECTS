@@ -1,0 +1,26 @@
+Project infos
+
+
+Database set up
++ go to mongoDb atlas create your account and there you can get a free account which we will work with
+just follow the set up steps and you will be fine
+
+Java project set up
++ as usual go to spring initializer and create a maven project
++ dependencies to add: mongodb data Nosql, spring web, swagger ui, swagger2
+
+Connect database with local Project
++ you will find the 'uri' in the maven database in the 'overview' section
++ in the application.properties file specify the 'uri' and the 'database' name and that's it.
+Note: do not forget to write you <password> manually here in the 'uri'
+
+Enable Swagger2
++ you specify all the beans in the main class
++ then you will create a endpoints mapping method in the controller class, so that all the request
+should go to the swagger webpage, and there you will be testing all you endpoints
+Note: if you are not using swagger you can skip this, because you do not have to, also you can use postman
+
+Create a Controller
++ create the endpoint mapping method for swagger and add the @ApiIgnore
+Note: whenever someone is requesting the homepage they will be redirected to swagger
+Note: @ApiIgnore just ignores the defaults api's you see when you open the swagger ui for the first time
