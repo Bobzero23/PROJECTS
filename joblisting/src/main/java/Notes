@@ -24,3 +24,27 @@ Create a Controller
 + create the endpoint mapping method for swagger and add the @ApiIgnore
 Note: whenever someone is requesting the homepage they will be redirected to swagger
 Note: @ApiIgnore just ignores the defaults api's you see when you open the swagger ui for the first time
+
+Create a Model
++ this is a java class where you want to map the data from the database which you are using
++ add the @Document annotation so that the mongoDb can understand which database you are referring
+
+Create a Repository
++ this is an interface which extends MongoRepository and there you pass the data type and the primary key
+Note: we're using mongoDb that is why we extends the MongoRepository interface
+Note: we don't even have to write the annotation @Repository (this is crazy right)
+
+Searching feature
++ MongoDB atlas provides the searching feature, but to use it you gonna have to create index first
++ Go to the website and create index you can put it as 'dynamic' or 'static' also you can test it there
+
+Aggregation
+in aggregation there is a 'search' option where you can use it like
++ 'query' it means what do you wanna search
++ 'path' where do you wanna search
+in aggregation there is a 'sort' option where you can use it like
++ 'field' it mean in which field you wanna sort
++ '1' for ascending order, '-1' for descending order
+
+PROBLEMS
++ I had a problem while trying to connect to mongoDB until I changed my IP address to O.0.0.0/0
