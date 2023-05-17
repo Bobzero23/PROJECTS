@@ -34,7 +34,7 @@ Create a Model
 Create a Repository
 + this is an interface which extends MongoRepository and there you pass the data type and the primary key
 Note: we're using mongoDb that is why we extends the MongoRepository interface
-Note: we don't even have to write the annotation @Repository (this is crazy right)
+Note: we don't even have to write the annotation @Repository (this is crazy right!)
 
 Searching feature
 + MongoDB atlas provides the searching feature, but to use it you gonna have to create index first
