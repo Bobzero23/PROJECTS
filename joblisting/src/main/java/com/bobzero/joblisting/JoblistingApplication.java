@@ -24,7 +24,7 @@ public class JoblistingApplication {
 	}
 
 	@Bean
-	public ApiInfo apiInfo(){
+	public ApiInfo apiInfo() {
 		final ApiInfoBuilder builder = new ApiInfoBuilder();
 		return builder.build();
 	}
