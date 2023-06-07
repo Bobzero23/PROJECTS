@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" th:href="@{assets/css/style.css}">
+  <title>Guestbook List</title>
+</head>
+
+<body>
+<div class="list-main">
+  <div class="row1">
+    <h1>Guestbook List</h1>
+  </div>
+  <div class="row2">
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Number</th>
+        <th>Subject</th>
+        <th>Message</th>
+      </tr>
+      <tr th:each="entry: ${entries}">
+        <td th:text="${entry.id}"></td>
+        <td th:text="${entry.firstName}"></td>
+        <td th:text="${entry.lastName}"></td>
+        <td th:text="${entry.email}"></td>
+        <td th:text="${entry.mobileNumber}"></td>
+        <td th:text="${entry.subject}"></td>
+        <td th:text="${entry.message}"></td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+</body>
+
+</html>

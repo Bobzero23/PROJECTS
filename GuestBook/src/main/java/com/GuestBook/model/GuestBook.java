@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class BookGuest {
+public class GuestBook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

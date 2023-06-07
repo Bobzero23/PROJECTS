@@ -2,10 +2,10 @@ package com.GuestBook.Repository;
 
 
 
-import com.GuestBook.model.BookGuest;
+import com.GuestBook.model.GuestBook;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookGuestRepository extends JpaRepository<BookGuest, Integer> {
+public interface GuestBookRepository extends JpaRepository<GuestBook, Integer> {
 }
