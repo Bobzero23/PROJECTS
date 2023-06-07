@@ -22,7 +22,7 @@ public class BookController {
     @Autowired
     private MyBookService myBookService;
 
-    @RequestMapping("/")
+    @RequestMapping(value = {"/", "", "/home"})
     public String home() {
         return "home";
     }

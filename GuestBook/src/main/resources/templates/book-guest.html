@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{assets/css/style.css}">
+    <title>GuestBook</title>
+</head>
+
+<body>
+    <div class="container">
+        <form action="#" th:action="@{/submitForm}" method="post">
+            <div class="row-1">
+                <input type="text" placeholder="first name" name="firstName">
+                <input type="text" placeholder="last name" name="lastName">
+            </div>
+            <div class="row-2">
+                <input type="text" placeholder="email" name="email">
+                <input type="text" placeholder="mobile number" name="mobileNumber">
+            </div>
+            <div class="row-3">
+                <input type="text" placeholder="subject" name="subject">
+            </div>
+            <div class="row-4">
+                <input type="text" placeholder="message" name="message">
+            </div>
+            <div class="row-5">
+                <button>submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
