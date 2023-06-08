@@ -8,6 +8,7 @@
     height: 100vh;
     background-color: #dad7cd;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -22,8 +23,13 @@
     align-items: center;
 }
 
+.form {
+    margin: 20px;
+}
+
 table {
     border-collapse: collapse;
+    margin: 20px;
     width: 100%;
 }
 
