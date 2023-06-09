@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 @Entity
 public class GuestBook {
@@ -35,4 +37,6 @@ public class GuestBook {
 
     @NotBlank(message = "message field can't be blank")
     private String message;
+
+    private LocalDateTime timestamp;
 }

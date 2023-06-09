@@ -17,7 +17,8 @@ import java.util.List;
 public class BookController {
 
     @Autowired
-    private BookService bookService;
+    private BookService
+            bookService;
 
     @Autowired
     private MyBookService myBookService;

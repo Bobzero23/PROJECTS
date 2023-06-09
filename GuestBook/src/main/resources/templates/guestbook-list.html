@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:util="urn:thymeleaf-util">
 
 <head>
   <meta charset="UTF-8">
@@ -24,6 +24,7 @@
         <th>Number</th>
         <th>Subject</th>
         <th>Message</th>
+        <th>Timestamp</th>
       </tr>
       <tr th:each="entry: ${entries}">
         <td th:text="${entry.id}"></td>
@@ -33,6 +34,7 @@
         <td th:text="${entry.mobileNumber}"></td>
         <td th:text="${entry.subject}"></td>
         <td th:text="${entry.message}"></td>
+        <td th:text="${entry.timestamp}"></td>
       </tr>
     </table>
     <div class="row3">

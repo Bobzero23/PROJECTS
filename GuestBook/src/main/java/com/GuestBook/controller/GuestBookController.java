@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @Controller
 public class GuestBookController {
@@ -33,6 +35,8 @@ public class GuestBookController {
             log.error("failed to submit the form due to: " +  errors.toString());
             return "guestbook.html";
         }
+
+        guestBook.setTimestamp(LocalDateTime.now());
         bookGuestService.saveGuestBook(guestBook);
         return "redirect:/form";
     }
