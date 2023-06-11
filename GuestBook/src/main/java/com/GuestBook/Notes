@@ -1,0 +1,3 @@
+Pagination
+Note: by default, Spring Data JPA's pagination starts from page 0. This means that when you access page 1, you're
+actually retrieving the data for page 0.

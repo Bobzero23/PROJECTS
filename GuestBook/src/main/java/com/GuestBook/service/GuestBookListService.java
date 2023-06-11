@@ -2,6 +2,8 @@ package com.GuestBook.service;
 
 import com.GuestBook.Repository.GuestBookRepository;
 import com.GuestBook.model.GuestBook;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +17,11 @@ public class GuestBookListService {
         this.guestBookRepository = guestBookRepository;
     }
 
-    public List<GuestBook> getAllEntries() {
-        return guestBookRepository.findAll();
+    public Page<GuestBook> getAllGuestBooks(Pageable pageable) {
+        return guestBookRepository.findAll(pageable);
+    }
+
+    public void deleteGuestBook(int id) {
+        guestBookRepository.deleteById(id);
     }
 }
