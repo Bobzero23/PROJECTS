@@ -37,3 +37,12 @@ th, td {
     border: 1px solid black;
     padding: 8px;
 }
+
+.pagination {
+    display: flex;
+    list-style-type: none;
+}
+
+.page-item {
+    margin: 10px;
+}

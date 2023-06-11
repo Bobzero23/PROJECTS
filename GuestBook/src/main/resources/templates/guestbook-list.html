@@ -25,20 +25,46 @@
         <th>Subject</th>
         <th>Message</th>
         <th>Timestamp</th>
+        <th>Delete</th>
       </tr>
-      <tr th:each="entry: ${entries}">
-        <td th:text="${entry.id}"></td>
-        <td th:text="${entry.firstName}"></td>
-        <td th:text="${entry.lastName}"></td>
-        <td th:text="${entry.email}"></td>
-        <td th:text="${entry.mobileNumber}"></td>
-        <td th:text="${entry.subject}"></td>
-        <td th:text="${entry.message}"></td>
-        <td th:text="${entry.timestamp}"></td>
+      <tr th:each="guestBook: ${guestBooks}">
+        <td th:text="${guestBook.id}"></td>
+        <td th:text="${guestBook.firstName}"></td>
+        <td th:text="${guestBook.lastName}"></td>
+        <td th:text="${guestBook.email}"></td>
+        <td th:text="${guestBook.mobileNumber}"></td>
+        <td th:text="${guestBook.subject}"></td>
+        <td th:text="${guestBook.message}"></td>
+        <td th:text="${guestBook.timestamp}"></td>
+        <td>
+          <form th:action="@{/deleteGuestBook/{id} (id=${guestBook.id})}">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
       </tr>
     </table>
     <div class="row3">
       <button type="button" onclick="window.location.href='/form'">Go to write a guestbook</button>
+    </div>
+    <div class="row4">
+      <ul class="pagination">
+        <li class="page-item" th:classappend="${currentPage == 1} ? disabled">
+          <a class="page-link" th:if="${currentPage != 1}" th:href="@{/guestBookList?page=1}">First</a>
+        </li>
+        <li class="page-item" th:classappend="${currentPage == 1} ? disabled">
+          <a class="page-link" th:if="${currentPage != 1}" th:href="@{/guestBookList?page=${currentPage - 1}}">Previous</a>
+        </li>
+        <li class="page-item" th:each="pageNumber : ${#numbers.sequence(1, totalPages)}" th:classappend="${currentPage == pageNumber} ? active">
+          <a class="page-link" th:href="@{/guestBookList?page=${pageNumber}}" th:text="${pageNumber}"></a>
+        </li>
+        <li class="page-item" th:classappend="${currentPage == totalPages} ? disabled">
+          <a class="page-link" th:if="${currentPage != totalPages}" th:href="@{/guestBookList?page=${currentPage + 1}}">Next</a>
+        </li>
+        <li class="page-item" th:classappend="${currentPage == totalPages} ? disabled">
+          <a class="page-link" th:if="${currentPage != totalPages}" th:href="@{/guestBookList?page=${totalPages}}">Last</a>
+        </li>
+      </ul>
+
     </div>
   </div>
 
