@@ -8,15 +8,10 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Book {
+public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
     String name;
-    String author;
-    String publisher;
-    String reviews;
-    String price;
-    String publicationYear;
     String description;
 }
