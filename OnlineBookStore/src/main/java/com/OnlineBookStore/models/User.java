@@ -9,10 +9,11 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    long id;
-    String nickname;
-    String phone;
-    String username;
-    String address;
-    String password;
+    private long user_id;
+    private String user_nickname;
+    private String user_phone;
+    private String username;
+    private String user_address;
+    private String user_password;
+    private String user_role;
 }

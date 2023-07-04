@@ -1,17 +1,20 @@
 package com.OnlineBookStore.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
+@Table(name = "categories")
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    String name;
-    String description;
+    private long category_id;
+    private String category_name;
+
+    @ManyToMany(mappedBy = "categories")
+    private List<Book> books;
 }
