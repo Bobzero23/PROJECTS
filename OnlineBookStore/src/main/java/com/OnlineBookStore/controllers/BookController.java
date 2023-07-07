@@ -21,6 +21,8 @@ public class BookController {
         this.bookRepository = bookRepository;
     }
 
+
+    @CrossOrigin
     @PostMapping("/addBook")
     public Book addBook(@RequestBody Book book) {
         return bookService.addBook(book);
