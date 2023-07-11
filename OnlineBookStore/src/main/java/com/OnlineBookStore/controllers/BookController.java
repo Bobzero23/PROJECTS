@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin
 @RestController
 public class BookController {
 
@@ -21,8 +21,7 @@ public class BookController {
         this.bookRepository = bookRepository;
     }
 
-
-    @CrossOrigin
+    
     @PostMapping("/addBook")
     public Book addBook(@RequestBody Book book) {
         return bookService.addBook(book);
@@ -30,7 +29,7 @@ public class BookController {
 
     @GetMapping("/getAllBooks")
     public List<Book> getAllBooks() {
-        return bookService.getAllBook();
+        return bookService.getAllBooks();
     }
 
     @PutMapping("/updateBook/{book_id}")
@@ -58,5 +57,6 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("Book with id " + book_id + " deleted successfully");
     }
+
 
 }

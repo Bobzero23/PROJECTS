@@ -4,6 +4,8 @@ import com.OnlineBookStore.models.User;
 import com.OnlineBookStore.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -23,7 +25,7 @@ public class UserService {
 
     public boolean authenticateUser(String username, String  password) {
         User user = userRepository.findByUsername(username);
-        return user != null && user.getUser_password().equals(password);
+        return user != null && user.getPassword().equals(password);
     }
 
 }
