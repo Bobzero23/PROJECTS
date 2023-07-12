@@ -17,6 +17,7 @@ public class UserController {
         this.userService = userService;
     }
 
+
     @GetMapping(value = {"/userPage"})
     public String displayUserPage() {
         return "register_user";
