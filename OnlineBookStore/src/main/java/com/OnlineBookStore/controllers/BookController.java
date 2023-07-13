@@ -37,15 +37,15 @@ public class BookController {
         Book existingBook = bookRepository.findById(book_id)
                 .orElseThrow(()-> new IllegalArgumentException("Invalid Book Id" + book_id));
 
-        existingBook.setBook_id(updatedBook.getBook_id());
-        existingBook.setBook_author(updatedBook.getBook_author());
-        existingBook.setBook_name(updatedBook.getBook_name());
-        existingBook.setBook_description(updatedBook.getBook_description());
-        existingBook.setBook_price(updatedBook.getBook_price());
-        existingBook.setBook_publisher(updatedBook.getBook_publisher());
-        existingBook.setBook_reviews(updatedBook.getBook_reviews());
-        existingBook.setBook_publication_year(updatedBook.getBook_publication_year());
-        existingBook.setBook_description(updatedBook.getBook_description());
+        existingBook.setId(updatedBook.getId());
+        existingBook.setAuthor(updatedBook.getAuthor());
+        existingBook.setName(updatedBook.getName());
+        existingBook.setDescription(updatedBook.getDescription());
+        existingBook.setPrice(updatedBook.getPrice());
+        existingBook.setPublisher(updatedBook.getPublisher());
+        existingBook.setReviews(updatedBook.getReviews());
+        existingBook.setPublication(updatedBook.getPublication());
+        existingBook.setDescription(updatedBook.getDescription());
 
         bookService.addBook(existingBook);
         return ResponseEntity.ok(existingBook);
@@ -56,6 +56,17 @@ public class BookController {
         bookRepository.deleteById(book_id);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("Book with id " + book_id + " deleted successfully");
+    }
+
+    @PostMapping("/searchBook")
+    public ResponseEntity<String> searchBookName(@RequestBody Book book) {
+        String bookName = book.getName();
+
+        if(bookService.isBookAvailable(bookName)) {
+            return ResponseEntity.status(HttpStatus.OK).body("Yes {" + bookName +  "} book is available");
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No results found");
+        }
     }
 
 

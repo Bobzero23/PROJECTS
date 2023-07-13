@@ -12,14 +12,14 @@ import java.util.List;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long book_id;
-    private String book_name;
-    private String book_author;
-    private String book_publisher;
-    private String book_reviews;
-    private String book_price;
-    private String book_publication_year;
-    private String book_description;
+    private long id;
+    private String name;
+    private String author;
+    private String publisher;
+    private String reviews;
+    private String price;
+    private String publication;
+    private String description;
 
     @ManyToMany
     @JoinTable(

@@ -23,4 +23,8 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+   public boolean isBookAvailable(String bookName) {
+        Book book = bookRepository.searchBookByName(bookName);
+        return book != null && book.getName().equals(bookName);
+    }
 }
