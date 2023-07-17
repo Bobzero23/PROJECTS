@@ -2,19 +2,24 @@ package com.OnlineBookStore.controllers;
 
 
 import com.OnlineBookStore.models.User;
+import com.OnlineBookStore.repository.UserRepository;
 import com.OnlineBookStore.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin
 @RestController
 public class UserController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
 
@@ -44,14 +49,22 @@ public class UserController {
         String password = user.getPassword();
 
         if(userService.authenticateUser(username, password)) {
-            return ResponseEntity.status(HttpStatus.CREATED).body("Welcome back " + username);
+            return ResponseEntity.status(HttpStatus.OK).body("Welcome back " + username);
         }else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Incorrect username or password");
         }
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<String> logoutUser() {
-        return ResponseEntity.status(HttpStatus.CREATED).body("Looking forward to see you again..");
+    @GetMapping("/getAllUsers")
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
+
+
+//    @PostMapping("/logout")
+//    public ResponseEntity<String> logoutUser() {
+//        return ResponseEntity.status(HttpStatus.CREATED).body("Looking forward to see you again..");
+//    }
 }
+
+

@@ -58,16 +58,9 @@ public class BookController {
                 .body("Book with id " + book_id + " deleted successfully");
     }
 
-    @PostMapping("/searchBook")
-    public ResponseEntity<String> searchBookName(@RequestBody Book book) {
-        String bookName = book.getName();
-
-        if(bookService.isBookAvailable(bookName)) {
-            return ResponseEntity.status(HttpStatus.OK).body("Yes {" + bookName +  "} book is available");
-        }else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No results found");
-        }
+    @GetMapping("/searchBook")
+    public ResponseEntity<List<Book>> searchBookName(@RequestParam String bookName) {
+            return new ResponseEntity<List<Book>>(bookRepository.findByNameLike("%" + bookName + "%"), HttpStatus.OK);
     }
-
 
 }
