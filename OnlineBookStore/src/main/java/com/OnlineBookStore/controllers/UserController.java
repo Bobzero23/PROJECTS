@@ -44,27 +44,29 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody User user) {
+    public ResponseEntity<User> loginUser(@RequestBody User user) {
         String username = user.getUsername();
         String password = user.getPassword();
 
-        if(userService.authenticateUser(username, password)) {
-            return ResponseEntity.status(HttpStatus.OK).body("Welcome back " + username);
-        }else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Incorrect username or password");
+        User authenticatedUser = userService.authenticateUser(username, password);
+
+        if (authenticatedUser != null && authenticatedUser.isAuthenticated()) {
+            return ResponseEntity.status(HttpStatus.OK).body(authenticatedUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
-
+    
     @GetMapping("/getAllUsers")
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-
-//    @PostMapping("/logout")
-//    public ResponseEntity<String> logoutUser() {
-//        return ResponseEntity.status(HttpStatus.CREATED).body("Looking forward to see you again..");
-//    }
+    @DeleteMapping("/deleteById/{id}")
+    public ResponseEntity<String> deleteUserById(@PathVariable Long id) {
+        userService.deleteUserById(id);
+        return ResponseEntity.status(HttpStatus.OK).body("deleted user with id: " + id);
+    }
 }
 
 

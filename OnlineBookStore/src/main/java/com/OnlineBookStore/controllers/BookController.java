@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
 @RestController
 public class BookController {
 
@@ -61,6 +60,13 @@ public class BookController {
     @GetMapping("/searchBook")
     public ResponseEntity<List<Book>> searchBookName(@RequestParam String bookName) {
             return new ResponseEntity<List<Book>>(bookRepository.findByNameLike("%" + bookName + "%"), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/getCartItems")
+    public ResponseEntity<List<Book>> getCartItems(@RequestParam List<Long> bookIds) {
+        List<Book> cartItems = bookService.getBooksByIds(bookIds);
+        return ResponseEntity.ok(cartItems);
     }
 
 }

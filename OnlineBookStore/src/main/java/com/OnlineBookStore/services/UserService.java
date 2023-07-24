@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-
     private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
@@ -21,10 +20,19 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public boolean authenticateUser(String username, String  password) {
+    public User authenticateUser(String username, String  password) {
         User user = userRepository.findByUsername(username);
-        return user != null && user.getPassword().equals(password);
+
+        if(user != null && user.getPassword().equals(password)) {
+            user.setAuthenticated(true);
+            return user;
+        }else {
+          return null;
+        }
     }
 
+    public void deleteUserById(Long id) {
+        userRepository.deleteById(id);
+    }
 
 }
