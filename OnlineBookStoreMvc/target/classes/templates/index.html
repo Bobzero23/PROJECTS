@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet"  type="text/css" th:href="@{/assets/css/index.css}">
+  <title>Log in</title>
+
+  <style>
+    .container {
+      width: 100%;
+      height: 669px;
+      background-image: url("/static/assets/media/image6.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container">
+  <form class="my-form" id="my-form">
+    <input type="text" placeholder="Username" id="username">
+    <input type="password" placeholder="Password" id="password">
+    <button type="submit" class="button">Log in</button>
+  </form>
+  <div class="sign-up-div">
+    <a href="register_user.html">Sign up</a>
+  </div>
+  <li><a href="index.html" id="logoutLink" style="display: none;">Log Out</a></li>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="loginChecker.js"></script>
+<script src="index.js"></script>
+</body>
+
+</html>
