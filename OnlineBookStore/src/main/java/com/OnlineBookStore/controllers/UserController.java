@@ -67,6 +67,20 @@ public class UserController {
         userService.deleteUserById(id);
         return ResponseEntity.status(HttpStatus.OK).body("deleted user with id: " + id);
     }
+
+    @PutMapping("/editUser/{id}")
+    public ResponseEntity<User> editUserById(@PathVariable Long id, @RequestBody User updatedUser) {
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("invalid User Id: " + id));
+
+        existingUser.setUsername(updatedUser.getUsername());
+        existingUser.setPhone(updatedUser.getPhone());
+        existingUser.setAddress(updatedUser.getAddress());
+        existingUser.setPassword(updatedUser.getPassword());
+
+        userService.addUser(existingUser);
+        return ResponseEntity.ok(existingUser);
+    }
 }
 
 
