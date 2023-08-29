@@ -1,6 +1,7 @@
 package com.AuthenticatedBackend.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ApplicationUser implements UserDetails {
@@ -32,10 +34,9 @@ public class ApplicationUser implements UserDetails {
     )
     private Set<Role> authorities;
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return this.authorities;
     }
 
     @Override
