@@ -39,8 +39,14 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<Post> createPost(
-            @RequestBody Post post, @RequestParam MultipartFile image)
-    throws IOException {
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
+            @RequestPart("image") MultipartFile image
+    ) throws IOException {
+        Post post = new Post();
+        post.setTitle(title);
+        post.setContent(content);
+
         Post createdPost = postService.createPost(post, image);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPost);
     }
