@@ -4,6 +4,7 @@ import com.BlogBackend.model.Post;
 import com.BlogBackend.repository.PostRepository;
 import com.BlogBackend.service.PostService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -29,12 +30,14 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
     public Post createPost(Post post, MultipartFile multipartFile) throws IOException {
         post.setImage(multipartFile.getBytes());
         return postRepository.save(post);
     }
 
     @Override
+    @Transactional
     public Post updatePost(long id, Post updatedPost, MultipartFile newImage) throws IOException {
         Post existingPost = postRepository.findById(id).orElse(null);
 
@@ -54,6 +57,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    @Transactional
     public void deletePost(long id) {
         postRepository.deleteById(id);
     }

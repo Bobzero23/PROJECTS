@@ -9,7 +9,7 @@ import java.util.List;
 public interface PostService {
     List<Post> getAllPosts();
     Post getPostById(long id);
-    Post createPost(Post post, MultipartFile multipartFile) throws IOException;
-    Post updatePost(long id, Post post, MultipartFile multipartFile) throws IOException;
+    Post createPost(Post post, MultipartFile image) throws IOException;
+    Post updatePost(long id, Post post, MultipartFile image) throws IOException;
     void deletePost(long id);
 }
