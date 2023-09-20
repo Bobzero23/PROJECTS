@@ -53,11 +53,17 @@ public class PostController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Post> updatePost(
-            @RequestBody Post updatedPost,
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
             @PathVariable long id,
             @RequestParam(value = "image", required = false) MultipartFile image
-    ) throws IOException{
+    ) throws IOException {
+        Post updatedPost = new Post();
+        updatedPost.setTitle(title);
+        updatedPost.setContent(content);
+
         Post updatedPostResult = postService.updatePost(id, updatedPost, image);
+
         if (updatedPostResult != null) {
             return ResponseEntity.ok(updatedPostResult);
         }else {
@@ -66,8 +72,14 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePost(@PathVariable long id) {
-        postService.deletePost(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> deletePost(@PathVariable long id) {
+        Post post = postService.getPostById(id);
+        if(post != null) {
+            postService.deletePost(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Post with id " + id + " deleted successfully");
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Post with id " + id + " is not valid");
+        }
+
     }
 }

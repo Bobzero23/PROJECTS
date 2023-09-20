@@ -15,8 +15,8 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Lob
+    @Column(length = 100000)
     private byte[] image;
     private String title;
     private String content;
-
 }
