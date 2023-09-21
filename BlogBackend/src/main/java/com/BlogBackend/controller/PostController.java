@@ -80,6 +80,5 @@ public class PostController {
         }else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Post with id " + id + " is not valid");
         }
-
     }
 }
