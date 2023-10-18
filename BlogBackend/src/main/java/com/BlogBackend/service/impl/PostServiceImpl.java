@@ -50,6 +50,7 @@ public class PostServiceImpl implements PostService {
             }
 
         }else {
+            System.out.println("something is null in the client Data");
             return null;
         }
 
