@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
-
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Collections;
 import java.util.List;
@@ -42,7 +42,11 @@ public class AppConfig {
         configuration.setAllowedHeaders(Collections.singletonList("*"));
         configuration.setExposedHeaders(List.of("Authorization"));
         configuration.setMaxAge(3600L);
-        return null;
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+
+        return source;
     }
 
     @Bean
