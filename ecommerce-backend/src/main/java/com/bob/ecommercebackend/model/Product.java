@@ -24,13 +24,13 @@ public class Product {
     private String description;
 
     @Column(name = "discounted_price")
-    private String discountedPrice;
+    private int discountedPrice;
 
     @Column(name = "discount_present")
-    private String discountPresent;
+    private int discountPercent;
 
     @Column(name = "quantity")
-    private String quantity;
+    private int quantity;
 
     @Column(name = "brand")
     private String brand;
@@ -66,13 +66,13 @@ public class Product {
 
     }
 
-    public Product(Long id, String title, int price, String description, String discountedPrice, String discountPresent, String quantity, String brand, String color, Set<Size> sizes, String imageUrl, List<Rating> ratings, List<Review> reviews, int numRatings, Category category, LocalDateTime createdAt) {
+    public Product(Long id, String title, int price, String description, int discountedPrice, int discountPercent, int quantity, String brand, String color, Set<Size> sizes, String imageUrl, List<Rating> ratings, List<Review> reviews, int numRatings, Category category, LocalDateTime createdAt) {
         this.id = id;
         this.title = title;
         this.price = price;
         this.description = description;
         this.discountedPrice = discountedPrice;
-        this.discountPresent = discountPresent;
+        this.discountPercent = discountPercent;
         this.quantity = quantity;
         this.brand = brand;
         this.color = color;
@@ -117,27 +117,27 @@ public class Product {
         this.description = description;
     }
 
-    public String getDiscountedPrice() {
+    public int getDiscountedPrice() {
         return discountedPrice;
     }
 
-    public void setDiscountedPrice(String discountedPrice) {
+    public void setDiscountedPrice(int discountedPrice) {
         this.discountedPrice = discountedPrice;
     }
 
-    public String getDiscountPresent() {
-        return discountPresent;
+    public int getDiscountPercent() {
+        return discountPercent;
     }
 
-    public void setDiscountPresent(String discountPresent) {
-        this.discountPresent = discountPresent;
+    public void setDiscountPercent(int discountPercent) {
+        this.discountPercent = discountPercent;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
