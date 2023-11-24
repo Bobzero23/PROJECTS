@@ -8,6 +8,7 @@ import com.bob.ecommercebackend.repository.ProductRepository;
 import com.bob.ecommercebackend.request.CreateProductRequest;
 import com.bob.ecommercebackend.service.ProductService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -137,6 +138,10 @@ public class ProductServiceImplementation implements ProductService {
 
         int startIndex =  (int) pageable.getOffset();
         int eneIndex = Math.min(startIndex + pageable.getPageSize(), products.size());
+
+        List<Product> pageContent = products.subList(startIndex, eneIndex);
+
+        Page<Product> filterProducts =  new PageImpl<>(pageContent, pageable, products.size());
 
         return null;
     }
