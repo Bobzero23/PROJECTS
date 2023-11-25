@@ -5,13 +5,35 @@ import jakarta.persistence.*;
 
 @Entity
 public class CartItem {
-    public CartItem(Long id, Cart cart, Product product, String size, int quantity, int discountedPrice, Integer price) {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @JsonIgnore
+    @ManyToOne
+    private Cart cart;
+
+    @ManyToOne
+    private Product product;
+
+    private String size;
+
+    private int quantity;
+    private Integer discountedPrice;
+
+    private Long userId;
+
+    private Integer price;
+
+    public CartItem(Long id, Cart cart, Product product, String size, int quantity, Integer discountedPrice, Long userId, Integer price) {
         this.id = id;
         this.cart = cart;
         this.product = product;
         this.size = size;
         this.quantity = quantity;
         this.discountedPrice = discountedPrice;
+        this.userId = userId;
         this.price = price;
     }
 
@@ -58,30 +80,6 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @JsonIgnore
-    @ManyToOne
-    private Cart cart;
-
-    @ManyToOne
-    private Product product;
-
-    private String size;
-
-    private int quantity;
-    private Integer discountedPrice;
-
     public Integer getDiscountedPrice() {
         return discountedPrice;
     }
@@ -90,5 +88,19 @@ public class CartItem {
         this.discountedPrice = discountedPrice;
     }
 
-    private Integer price;
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
 }
