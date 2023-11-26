@@ -60,6 +60,11 @@ public class OrderServiceImplementation implements OrderService {
     }
 
     @Override
+    public Order shippedOrder(Long orderId) throws OrderException {
+        return null;
+    }
+
+    @Override
     public List<Order> getAllOrders() {
         return null;
     }

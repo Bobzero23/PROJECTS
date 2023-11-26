@@ -118,7 +118,8 @@ public class ProductServiceImplementation implements ProductService {
     }
 
     @Override
-    public Page<Product> getAllProducts(String category, List<String> colors, Integer minPrice,     Integer maxPrice, Integer minDiscount, String sort, String stock, Integer pageNumber, Integer pageSize) {
+    public Page<Product> getAllProducts(String category, List<String> colors, List<String> sizes, Integer minPrice,
+                                        Integer maxPrice, Integer minDiscount, String sort, String stock, Integer pageNumber, Integer pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
         List<Product> products = productRepository.filterProducts(category, minPrice, maxPrice, minDiscount, sort);
