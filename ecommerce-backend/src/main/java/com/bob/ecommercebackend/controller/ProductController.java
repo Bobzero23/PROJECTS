@@ -3,6 +3,7 @@ package com.bob.ecommercebackend.controller;
 import com.bob.ecommercebackend.exception.ProductException;
 import com.bob.ecommercebackend.model.Product;
 import com.bob.ecommercebackend.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
-    private ProductService productService;
+
+    private final ProductService productService;
 
     public ProductController(ProductService productService) {
         this.productService = productService;
@@ -25,7 +27,7 @@ public class ProductController {
             @RequestParam Integer maxPrice, @RequestParam Integer minDiscount, @RequestParam String sort,
             @RequestParam String stock, @RequestParam Integer pageNumber, @RequestParam Integer pageSize) {
 
-        Page<Product> response = productService .getAllProducts(
+        Page<Product> response = productService.getAllProducts(
                 category, color, size, minPrice, maxPrice, minDiscount, sort, stock, pageNumber, pageSize);
 
         System.out.println("Complete products");

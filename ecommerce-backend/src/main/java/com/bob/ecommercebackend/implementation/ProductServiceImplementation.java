@@ -7,6 +7,7 @@ import com.bob.ecommercebackend.repository.CategoryRepository;
 import com.bob.ecommercebackend.repository.ProductRepository;
 import com.bob.ecommercebackend.request.CreateProductRequest;
 import com.bob.ecommercebackend.service.ProductService;
+import com.bob.ecommercebackend.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -21,11 +22,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImplementation implements ProductService {
-    private ProductRepository productRepository;
-    private CustomUserServiceImplementation userService;
-    private CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
+    private final UserService userService;
+    private final CategoryRepository categoryRepository;
 
-    public ProductServiceImplementation(ProductRepository productRepository, CustomUserServiceImplementation userService, CategoryRepository categoryRepository) {
+    public ProductServiceImplementation(ProductRepository productRepository,UserService userService, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.userService = userService;
         this.categoryRepository = categoryRepository;
@@ -39,29 +40,29 @@ public class ProductServiceImplementation implements ProductService {
             Category  topLavelCategory = new Category();
             topLavelCategory.setName(request.getTopLavelCategory());
             topLavelCategory.setLevel(1);
-            categoryRepository.save(topLavelCategory);
+            topLavel = categoryRepository.save(topLavelCategory);
         }
 
         Category secondLavel = categoryRepository
                 .findByNameAndParentCategory(request.getSecondLavelCategory(), topLavel.getName());
 
         if (secondLavel == null) {
-            Category  secondLavelCategory = new Category();
-            secondLavelCategory.setName(request.getTopLavelCategory());
+            Category secondLavelCategory = new Category();
+            secondLavelCategory.setName(request.getSecondLavelCategory());
             secondLavelCategory.setParentCategory(topLavel);
             secondLavelCategory.setLevel(2);
-            categoryRepository.save(secondLavelCategory);
+            secondLavel = categoryRepository.save(secondLavelCategory);
         }
 
         Category thirdLavel = categoryRepository
-                .findByNameAndParentCategory(request.getSecondLavelCategory(), topLavel.getName());
+                .findByNameAndParentCategory(request.getThirdLavelCategory(), secondLavel.getName());
 
-        if (secondLavel == null) {
-            Category  thirdLavelCategory = new Category();
-            thirdLavelCategory.setName(request.getTopLavelCategory());
-            thirdLavelCategory.setParentCategory(topLavel);
-            thirdLavelCategory.setLevel(2);
-            categoryRepository.save(thirdLavelCategory);
+        if (thirdLavel == null) {
+            Category thirdLavelCategory = new Category();
+            thirdLavelCategory.setName(request.getThirdLavelCategory());
+            thirdLavelCategory.setParentCategory(secondLavel);
+            thirdLavelCategory.setLevel(3);
+            thirdLavel = categoryRepository.save(thirdLavelCategory);
         }
 
         Product product = new Product();
@@ -78,17 +79,14 @@ public class ProductServiceImplementation implements ProductService {
         product.setCategory(thirdLavel);
         product.setCreatedAt(LocalDateTime.now());
 
-        Product savedProduct = productRepository.save(product);
-
-        return savedProduct;
+        return productRepository.save(product);
     }
 
     @Override
-    public String deleteProduct(Long productId) throws ProductException {
+    public void deleteProduct(Long productId) throws ProductException {
         Product product = findProductById(productId);
         product.getSizes().clear();
         productRepository.deleteById(productId);
-        return "Product deleted successfully";
     }
 
     @Override
@@ -142,8 +140,11 @@ public class ProductServiceImplementation implements ProductService {
 
         List<Product> pageContent = products.subList(startIndex, eneIndex);
 
-        Page<Product> filterProducts =  new PageImpl<>(pageContent, pageable, products.size());
+        return new PageImpl<>(pageContent, pageable, products.size());
+    }
 
-        return null;
+    @Override
+    public List<Product> findAllProducts() {
+        return productRepository.findAll();
     }
 }

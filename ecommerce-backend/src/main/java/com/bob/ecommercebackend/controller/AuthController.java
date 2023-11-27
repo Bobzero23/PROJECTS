@@ -3,10 +3,12 @@ package com.bob.ecommercebackend.controller;
 import com.bob.ecommercebackend.config.JwtProvider;
 import com.bob.ecommercebackend.exception.UserException;
 import com.bob.ecommercebackend.implementation.CustomUserServiceImplementation;
+import com.bob.ecommercebackend.model.Cart;
 import com.bob.ecommercebackend.model.User;
 import com.bob.ecommercebackend.repository.UserRepository;
 import com.bob.ecommercebackend.request.LoginRequest;
 import com.bob.ecommercebackend.response.AuthResponse;
+import com.bob.ecommercebackend.service.CartService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -24,16 +26,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private UserRepository userRepository;
-    private JwtProvider jwtProvider;
-    private PasswordEncoder passwordEncoder;
-    private CustomUserServiceImplementation customUserService;
+    private final UserRepository userRepository;
+    private final JwtProvider jwtProvider;
+    private final PasswordEncoder passwordEncoder;
+    private final CustomUserServiceImplementation customUserService;
+    private final CartService cartService;
 
-    public AuthController(UserRepository userRepository, JwtProvider jwtProvider, PasswordEncoder passwordEncoder, CustomUserServiceImplementation customUserService) {
+    public AuthController(UserRepository userRepository, JwtProvider jwtProvider, PasswordEncoder passwordEncoder, CustomUserServiceImplementation customUserService, CartService cartService) {
         this.userRepository = userRepository;
         this.jwtProvider = jwtProvider;
         this.passwordEncoder = passwordEncoder;
         this.customUserService = customUserService;
+        this.cartService = cartService;
     }
 
     @PostMapping("/signup")
@@ -57,6 +61,7 @@ public class AuthController {
 
         User savedUser = userRepository.save(createdUser);
 
+        Cart cart = cartService.createCart(savedUser);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(savedUser.getEmail(), savedUser.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);

@@ -46,5 +46,5 @@ public class AddItemRequest {
     private Long productId;
     private String size;
     private int quantity;
-    private  int price;
+    private  Integer price;
 }

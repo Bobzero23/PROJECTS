@@ -23,7 +23,6 @@ public class Category {
     private int level;
 
     public Category () {
-
     }
 
     public Long getId() {

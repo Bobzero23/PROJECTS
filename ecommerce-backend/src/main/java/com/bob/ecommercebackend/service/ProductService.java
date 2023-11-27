@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public interface ProductService {
     public Product createProduct (CreateProductRequest request);
-    public String deleteProduct (Long productId) throws ProductException;
+    public void deleteProduct (Long productId) throws ProductException;
     public Product updateProduct (Long productId, Product request) throws ProductException;
     public Product findProductById (Long productId) throws ProductException;
     public List<Product> findProductByCategory (String category);
@@ -19,4 +19,5 @@ public interface ProductService {
                                         Integer minPrice, Integer maxPrice, Integer minDiscount,
                                         String sort, String stock, Integer pageNumber, Integer pageSize);
 
+    public List<Product> findAllProducts();
 }

@@ -1,3 +1,8 @@
 WARNINGS
 ** Not sure about the corsConfiguration method is kinda tricky  (SOLVED)
 ** Errors in Embedded and CollectionTable annotation but the program runs so..
+
+THINGS I LEARNED
++ Embedding jwt on postman request
++ Using postman environment variables
++ getting the current user from jwt
