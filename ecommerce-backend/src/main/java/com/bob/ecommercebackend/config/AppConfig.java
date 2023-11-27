@@ -19,7 +19,7 @@ import java.util.List;
 
 @Configuration
 public class AppConfig {
-
+/*Lamela*/
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
