@@ -30,7 +30,6 @@ public class OrderController {
                                                     @RequestHeader("Authorization") String jwt) throws UserException {
         User user = userService.findUserProfileByJwt(jwt);
         Order order = orderService.createOrder(user, shippingAddress);
-        System.out.println("Order - " + order);
 
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }

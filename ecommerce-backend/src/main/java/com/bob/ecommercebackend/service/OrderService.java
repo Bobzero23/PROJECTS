@@ -9,16 +9,16 @@ import com.bob.ecommercebackend.model.User;
 import java.util.List;
 
 public interface OrderService {
-    public Order createOrder(User user, Address shippingAddress);
-    public Order findOrderById(Long orderId) throws OrderException;
-    public List<Order> usersOrderHistory(Long userId);
-    public Order placedOrder(Long orderId) throws OrderException;
-    public Order confirmedOrder(Long orderId) throws OrderException;
-    public Order deliveredOrder(Long orderId) throws OrderException;
-    public Order canceledOrder(Long orderId) throws OrderException;
-    public Order shippedOrder(Long orderId) throws OrderException;
-    public List<Order> getAllOrders();
-    public void deleteOrder(Long orderId) throws    OrderException;
+    Order createOrder(User user, Address shippingAddress);
+    Order findOrderById(Long orderId) throws OrderException;
+    List<Order> usersOrderHistory(Long userId);
+    Order placedOrder(Long orderId) throws OrderException;
+    Order confirmedOrder(Long orderId) throws OrderException;
+    Order deliveredOrder(Long orderId) throws OrderException;
+    Order canceledOrder(Long orderId) throws OrderException;
+    Order shippedOrder(Long orderId) throws OrderException;
+    List<Order> getAllOrders();
+    void deleteOrder(Long orderId) throws    OrderException;
 
 
 }

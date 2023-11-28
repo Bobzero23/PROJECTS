@@ -4,10 +4,8 @@ import com.bob.ecommercebackend.exception.OrderException;
 import com.bob.ecommercebackend.model.*;
 import com.bob.ecommercebackend.repository.*;
 import com.bob.ecommercebackend.service.CartService;
-import com.bob.ecommercebackend.service.OrderItemService;
 import com.bob.ecommercebackend.service.OrderService;
-import com.bob.ecommercebackend.service.ProductService;
-import org.aspectj.weaver.ast.Or;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class OrderServiceImplementation implements OrderService {
     private final CartService cartService;
@@ -25,7 +24,6 @@ public class OrderServiceImplementation implements OrderService {
 
 
     public OrderServiceImplementation(CartService cartService, OrderItemRepository orderItemRepository, OrderRepository orderRepository, AddressRepository addressRepository, UserRepository userRepository) {
-
         this.cartService = cartService;
         this.orderItemRepository = orderItemRepository;
         this.orderRepository = orderRepository;
@@ -54,7 +52,7 @@ public class OrderServiceImplementation implements OrderService {
             orderItem.setUserId(item.getUserId());
             orderItem.setDiscountedPrice(item.getDiscountedPrice());
 
-            OrderItem createdOrderItem = new OrderItem();
+            OrderItem createdOrderItem = orderItemRepository.save(orderItem);
             orderItems.add(createdOrderItem);
 
         }
@@ -80,13 +78,14 @@ public class OrderServiceImplementation implements OrderService {
             orderItemRepository.save(item);
         }
 
-
-        return null;
+        log.info("saved order is - " + savedOrder);
+        return savedOrder;
     }
 
     @Override
     public Order findOrderById(Long orderId) throws OrderException {
         Optional<Order> order = orderRepository.findById(orderId);
+
         if (order.isPresent()) {
             return order.get();
         }

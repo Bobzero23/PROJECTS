@@ -1,5 +1,6 @@
 package com.bob.ecommercebackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jdk.dynalink.linker.LinkerServices;
 
@@ -142,6 +143,7 @@ public class Order {
     @Column(name = "order_id")
     private String orderId;
 
+    @JsonIgnore
     @ManyToOne
     private User user;
 
