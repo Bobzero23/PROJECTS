@@ -13,29 +13,23 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrderServiceImplementation implements OrderService {
-    private CartRepository cartRepository;
-    private CartService cartItemService;
-    private CartService cartService;
-    private OrderItemRepository orderItemRepository;
-    private OrderRepository orderRepository;
-    private AddressRepository addressRepository;
-    private OrderItemService orderItemService;
-    private ProductService productService;
-    private UserRepository userRepository;
+    private final CartService cartService;
+    private final OrderItemRepository orderItemRepository;
+    private final OrderRepository orderRepository;
+    private final AddressRepository addressRepository;
+    private final UserRepository userRepository;
 
 
-    public OrderServiceImplementation(CartRepository cartRepository, CartService cartItemService, CartService cartService, OrderItemRepository orderItemRepository, OrderRepository orderRepository, AddressRepository addressRepository, OrderItemService orderItemService, ProductService productService, UserRepository userRepository) {
-        this.cartRepository = cartRepository;
-        this.cartItemService = cartItemService;
+    public OrderServiceImplementation(CartService cartService, OrderItemRepository orderItemRepository, OrderRepository orderRepository, AddressRepository addressRepository, UserRepository userRepository) {
+
         this.cartService = cartService;
         this.orderItemRepository = orderItemRepository;
         this.orderRepository = orderRepository;
         this.addressRepository = addressRepository;
-        this.orderItemService = orderItemService;
-        this.productService = productService;
         this.userRepository = userRepository;
     }
 
@@ -91,13 +85,18 @@ public class OrderServiceImplementation implements OrderService {
     }
 
     @Override
-    public Order findOrderById(Long orderId) {
-        return null;
+    public Order findOrderById(Long orderId) throws OrderException {
+        Optional<Order> order = orderRepository.findById(orderId);
+        if (order.isPresent()) {
+            return order.get();
+        }
+
+        throw new OrderException("Couldn't find order with id - " + orderId);
     }
 
     @Override
     public List<Order> usersOrderHistory(Long userId) {
-        return null;
+        return orderRepository.getUsersOrders(userId);
     }
 
     @Override
@@ -111,31 +110,39 @@ public class OrderServiceImplementation implements OrderService {
     @Override
     public Order confirmedOrder(Long orderId) throws OrderException {
         Order order = findOrderById(orderId);
-
+        order.setOrderStatus("CONFIRMED");
+        return orderRepository.save(order);
     }
 
     @Override
     public Order deliveredOrder(Long orderId) throws OrderException {
-        return null;
+        Order order = findOrderById(orderId);
+        order.setOrderStatus("DELIVERED");
+        return orderRepository.save(order);
     }
 
     @Override
     public Order canceledOrder(Long orderId) throws OrderException {
-        return null;
+        Order order = findOrderById(orderId);
+        order.setOrderStatus("CANCELED");
+        return orderRepository.save(order);
     }
 
     @Override
     public Order shippedOrder(Long orderId) throws OrderException {
-        return null;
+        Order order = findOrderById(orderId);
+        order.setOrderStatus("SHIPPED");
+        return orderRepository.save(order);
     }
 
     @Override
     public List<Order> getAllOrders() {
-        return null;
+        return orderRepository.findAll();
     }
 
     @Override
     public void deleteOrder(Long orderId) throws OrderException {
-
+        Order order = findOrderById(orderId);
+        orderRepository.delete(order);
     }
 }
