@@ -23,25 +23,24 @@ public class AppConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers("/api**").authenticated().anyRequest().permitAll())
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/api/**").authenticated()
+                        .requestMatchers("/auth/signin").permitAll()
+                        .anyRequest().permitAll())
                 .addFilterBefore(new JwtValidator(), BasicAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(cors -> cors.configurationSource(new CorsConfigurationSource() {
-                    @Override
-                    public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-                        CorsConfiguration configuration = new CorsConfiguration();
-                        configuration.setAllowedOrigins(List.of("http://localhost:8080"));
-                        configuration.setAllowedMethods(Collections.singletonList("*"));
-                        configuration.setAllowCredentials(true);
-                        configuration.setAllowedHeaders(Collections.singletonList("*"));
-                        configuration.setExposedHeaders(List.of("Authorization"));
-                        configuration.setMaxAge(3600L);
+                .cors(cors -> cors.configurationSource(request -> {
+                    CorsConfiguration configuration = new CorsConfiguration();
+                    configuration.setAllowedOrigins(List.of("http://localhost:8080", "http://localhost:5173"));
+                    configuration.setAllowedMethods(Collections.singletonList("*"));
+                    configuration.setAllowCredentials(true);
+                    configuration.setAllowedHeaders(Collections.singletonList("*"));
+                    configuration.setExposedHeaders(List.of("Authorization"));
+                    configuration.setMaxAge(3600L);
 
-                        return null;
-                    }
+                    return configuration;
                 }))
-                .httpBasic(Customizer.withDefaults())
-                .formLogin(Customizer.withDefaults());
+                .httpBasic(Customizer.withDefaults());
         return http.build();
     }
 

@@ -9,6 +9,7 @@ import com.bob.ecommercebackend.repository.UserRepository;
 import com.bob.ecommercebackend.request.LoginRequest;
 import com.bob.ecommercebackend.response.AuthResponse;
 import com.bob.ecommercebackend.service.CartService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/auth")
@@ -42,6 +44,9 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> createUserHandler (@RequestBody User user) throws UserException {
+        System.out.println(
+                "calling the signup endpoint"
+        );
         String email = user.getEmail();
         String password = user.getPassword();
         String firstName = user.getFirstName();
@@ -77,7 +82,10 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<AuthResponse> loginUserHandler(@RequestBody LoginRequest request) {
-        String username = request.getUsername();
+        System.out.println(
+                "calling the signin endpoint"
+        );
+        String username = request.getEmail();
         String password = request.getPassword();
 
         Authentication authentication = authenticate(username, password);
