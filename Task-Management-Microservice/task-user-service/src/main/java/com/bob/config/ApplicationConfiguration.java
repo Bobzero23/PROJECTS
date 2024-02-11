@@ -25,7 +25,7 @@ public class ApplicationConfiguration {
                 )
         ).authorizeHttpRequests(
                 Authorize -> Authorize.requestMatchers("/api/**").authenticated().anyRequest().permitAll()
-        ).addFilterBefore(new JwtTokenValidator, BasicAuthenticationFilter.class)
+        ).addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
                 .csrf(csrf -> csrf.disable()).cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults());
@@ -34,7 +34,7 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    private CorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource() {
         return new CorsConfigurationSource() {
             @Override
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
