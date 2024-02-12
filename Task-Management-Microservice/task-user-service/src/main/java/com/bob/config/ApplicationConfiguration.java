@@ -24,7 +24,7 @@ public class ApplicationConfiguration {
                         SessionCreationPolicy.STATELESS
                 )
         ).authorizeHttpRequests(
-                Authorize -> Authorize.requestMatchers("/api/**").authenticated().anyRequest().permitAll()
+                Authorize -> Authorize.requestMatchers("/auth/signup").permitAll().anyRequest().authenticated()
         ).addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
                 .csrf(csrf -> csrf.disable()).cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .httpBasic(Customizer.withDefaults())
