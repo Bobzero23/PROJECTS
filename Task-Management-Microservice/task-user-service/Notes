@@ -1,6 +1,8 @@
 ERROR
 * Bean methods must not be final or private
 * Even after implementing a customUserService you will get the default password if you do not annotate the interface with @Service.
+* Couldn't find the proper jwt dependencies.
+* I had to configure the lombok plugins cuz the id was new.
 
 NOTICE
-* Spring Security will always give us the default username and password for login until we implement a custom userService.
+* Spring Security will always give us the default us;ername and password for login until we implement a custom userService.
