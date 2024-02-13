@@ -1,11 +1,13 @@
-package com.bob;
+package com.bob.task.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TaskUserServiceApplication {
+public class TaskServiceApplication {
+
 	public static void main(String[] args) {
-		SpringApplication.run(TaskUserServiceApplication.class, args);
+		SpringApplication.run(TaskServiceApplication.class, args);
 	}
+
 }
