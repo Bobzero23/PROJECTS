@@ -25,7 +25,7 @@ public class Task {
     private String image;
     private Long assignedUserId;
     private List<String> tags = new ArrayList<>();
-    private TaskStatus taskStatus;
+    private TaskStatus status;
     private LocalDateTime deadline;
     private LocalDateTime createdAt;
 }
