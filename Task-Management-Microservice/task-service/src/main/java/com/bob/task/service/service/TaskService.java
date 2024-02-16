@@ -2,8 +2,10 @@ package com.bob.task.service.service;
 
 import com.bob.task.service.model.Task;
 import com.bob.task.service.model.TaskStatus;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 
 public interface TaskService {
     Task createTask(Task task, String requesterRole) throws Exception;

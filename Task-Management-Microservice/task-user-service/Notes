@@ -7,3 +7,5 @@ ERROR
 
 NOTICE
 * Spring Security will always give us the default username and password for login until we implement a custom userService.
+
+this is for submission service init commit

@@ -4,11 +4,13 @@ import com.bob.task.service.model.Task;
 import com.bob.task.service.model.TaskStatus;
 import com.bob.task.service.repository.TaskRepository;
 import com.bob.task.service.service.TaskService;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class TaskServiceImplementation implements TaskService {
     private final TaskRepository taskRepository;
 

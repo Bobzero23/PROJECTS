@@ -1,0 +1,22 @@
+ERROR
+* Bean methods must not be final or private
+* Even after implementing a customUserService you will get the default password if you do not annotate the interface with @Service.
+* Couldn't find the proper jwt dependencies.
+* I had to configure the lombok plugins cuz the id was new.
+* While getting email from token use parseClaimsJws(jwt), instead of parseClaimsJwt(jwt).
+
+NOTICE
+* Spring Security will always give us the default username and password for login until we implement a custom userService.
+
+KNOWLEDGE
+* Using OpenFeignClient we can communicate among the service (we can use a method that is being used in another service)
+
+HOW TO USE OPEN FEIGN CLIENT
+* Create a dto in the service you want to use OpenFeignClient
+* Annotate the main class with @EnableOpenFeignClient
+* Create the service interface and annotate it with @FeignClient(name="Name-Of-Service", url = "http://localhost:5001")
+* Name-Of-Service must be the other service you want to communicate with
+* Make sure to modify the 'url' property depends on the url your other service is running on.
+* Then create the methods like you created in the other service CONTROLLER.
+
+something for the submission init commit
