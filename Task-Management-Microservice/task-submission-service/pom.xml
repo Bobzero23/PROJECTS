@@ -12,7 +12,7 @@
 	<artifactId>task-submission-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>task-submission-service</name>
-	<description>Submission service for task managememnt</description>
+	<description>submission service for task management</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.0</spring-cloud.version>

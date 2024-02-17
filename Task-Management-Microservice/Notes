@@ -18,5 +18,3 @@ HOW TO USE OPEN FEIGN CLIENT
 * Name-Of-Service must be the other service you want to communicate with
 * Make sure to modify the 'url' property depends on the url your other service is running on.
 * Then create the methods like you created in the other service CONTROLLER.
-
-something for the submission init commit
