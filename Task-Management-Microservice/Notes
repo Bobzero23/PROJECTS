@@ -17,4 +17,5 @@ HOW TO USE OPEN FEIGN CLIENT
 * Create the service interface and annotate it with @FeignClient(name="Name-Of-Service", url = "http://localhost:5001")
 * Name-Of-Service must be the other service you want to communicate with
 * Make sure to modify the 'url' property depends on the url your other service is running on.
-* Then create the methods like you created in the other service CONTROLLER.
+* Then create the methods like you created in the other service CONTROLLER. (Note: make sure the method has the the full
+    endpoint of the other controller and not only the method of the the endpoint)
