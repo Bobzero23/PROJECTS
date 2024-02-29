@@ -19,3 +19,17 @@ HOW TO USE OPEN FEIGN CLIENT
 * Make sure to modify the 'url' property depends on the url your other service is running on.
 * Then create the methods like you created in the other service CONTROLLER. (Note: make sure the method has the the full
     endpoint of the other controller and not only the method of the the endpoint)
+
+MICROSERVICE GATEWAY
+* Making the server to use only one port for all services
++ Simply create a new spring project from spring init.io
++ add the gateway and eureka discovery client init and generate it
++ open the project in the IDE and make sure it is a maven project
++ change the name of the application.properties to application.yaml
++ open the yaml file and add the server as shown in this project
+
+
+ADDING A NEW FILE AS A MAVEN PROJECT
++ Click the maven the symbol on the left top
++ There click the cross symbol to add the file
++ choose the file, and that's  it
